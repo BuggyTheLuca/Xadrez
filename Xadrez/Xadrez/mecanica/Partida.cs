@@ -1,14 +1,15 @@
 ﻿using System;
 using tabuleiro;
 using Xadrez;
+using Xadrez.Exceptions;
 
 namespace mecanica
 {
     internal class Partida
     {
         public Tabuleiro tabuleiro { private set; get; }
-        private int turno;
-        private Cor jogadorAtual;
+        public int turno { private set; get; }
+        public Cor jogadorAtual { private set; get; }
         public bool terminada { get; private set; }
 
         public Partida()
@@ -26,6 +27,42 @@ namespace mecanica
             peca.IncrementarMovimento();
             Peca pecaCapturada = tabuleiro.RetirarPeca(destino);
             tabuleiro.ColocarPeca(peca, destino);
+        }
+
+        public void RealizarJogada(Posicao origem, Posicao destino)
+        {
+            ExecutarMovimento(origem, destino);
+            turno++;
+            MudarJogador();
+
+        }
+
+        public void validarOrigem(Posicao posicao)
+        {
+            if (tabuleiro.isPeca(posicao) == null)
+            {
+                throw new TabuleiroException("Não existe peça nesta posição!");
+            }
+            if (jogadorAtual != tabuleiro.isPeca(posicao).cor)
+            {
+                throw new TabuleiroException("Peça escolhida com cor errada!");
+            }
+            if (!tabuleiro.isPeca(posicao).ExisteMovimento())
+            {
+                throw new TabuleiroException("Não existem movimentos possiveis para esta peça!");
+            }
+        }
+
+        private void MudarJogador()
+        {
+            if (jogadorAtual == Cor.Branca)
+            {
+                jogadorAtual = Cor.Preta;
+            }
+            else
+            {
+                jogadorAtual = Cor.Branca;
+            }
         }
 
         private void ColocarPecas()

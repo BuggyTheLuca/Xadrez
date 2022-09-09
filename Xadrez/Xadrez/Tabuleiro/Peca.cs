@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,22 @@ namespace tabuleiro
         {
             Peca peca = tabuleiro.isPeca(posicao);
             return peca == null || peca.cor != cor;
+        }
+
+        public bool ExisteMovimento()
+        {
+            bool[,] matAux = MovimentosPossiveis();
+            for(int i = 0; i < tabuleiro.linhas; i++)
+            {
+                for(int j = 0; j < tabuleiro.colunas; j++)
+                {
+                    if (matAux[i,j])
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
         public void IncrementarMovimento()
