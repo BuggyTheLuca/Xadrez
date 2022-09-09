@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Xadrez.Exceptions;
 
 namespace tabuleiro
 {
@@ -24,10 +21,34 @@ namespace tabuleiro
             return pecas[linha,coluna];
         }
 
+        public Peca isPeca(Posicao posicao)
+        {
+            return pecas[posicao.linha, posicao.coluna];
+        }
+
+        public bool pecaExists(Posicao posicao)
+        {
+            ValidarPosicao(posicao);
+            return isPeca(posicao) != null;
+        }
+
         public void ColocarPeca(Peca peca, Posicao posicao)
         {
+            if (pecaExists(posicao))
+            {
+                throw new TabuleiroException($"Já existe uma peça na posição {posicao}.");
+            }
             pecas[posicao.linha, posicao.coluna] = peca;
             peca.posicao = posicao;
+        }
+
+        public void ValidarPosicao(Posicao posicao)
+        {
+            if (posicao.linha < 0 || posicao.coluna < 0
+                || posicao.linha >= linhas || posicao.coluna >= colunas)
+            {
+                throw new TabuleiroException($"Posição {posicao} inválida!");
+            }
         }
     }
 }
