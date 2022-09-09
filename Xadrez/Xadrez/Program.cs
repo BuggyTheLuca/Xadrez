@@ -8,9 +8,9 @@ namespace Xadrez
 
         public static void Main()
         {
-            Tabuleiro tab = new Tabuleiro(2, 2);
-            Posicao posi = new Posicao(1,1);
-            Peca peca = new Peca(posi, tab, Cor.Preta);
+            Tabuleiro tab = new Tabuleiro(8, 8);
+
+            Tela.ImprimirTabuleiro(tab);
         }
     }
 }
