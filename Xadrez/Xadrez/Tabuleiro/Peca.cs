@@ -44,6 +44,11 @@ namespace tabuleiro
             return false;
         }
 
+        public bool PodeDestino(Posicao posicao)
+        {
+            return MovimentosPossiveis()[posicao.linha, posicao.coluna];
+        }
+
         public void IncrementarMovimento()
         {
             quantidadeDeMovimentos++;

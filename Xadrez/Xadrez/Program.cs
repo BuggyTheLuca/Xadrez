@@ -46,6 +46,7 @@ namespace Xadrez
 
                         Console.Write("Destino: ");
                         Posicao destino = Tela.LerPosicaoXadrez().toPosicao();
+                        partida.validarDestino(origem, destino);
 
                         partida.RealizarJogada(origem, destino);
                     }

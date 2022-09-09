@@ -53,6 +53,14 @@ namespace mecanica
             }
         }
 
+        public void validarDestino(Posicao origem, Posicao destino)
+        {
+            if (!tabuleiro.isPeca(origem).PodeDestino(destino))
+            {
+                throw new TabuleiroException("Destino escolhido inválido para esta peça!");
+            }
+        }
+
         private void MudarJogador()
         {
             if (jogadorAtual == Cor.Branca)
