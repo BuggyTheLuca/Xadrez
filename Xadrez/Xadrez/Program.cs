@@ -12,9 +12,11 @@ namespace Xadrez
         {
             Tabuleiro tabuleiro = new Tabuleiro(8, 8);
 
-            PosicaoXadrez posicaoXadrez = new PosicaoXadrez('d', 3);
-            Console.WriteLine(posicaoXadrez);
-            Console.WriteLine(posicaoXadrez.toPosicao());
+            tabuleiro.ColocarPeca(new Rei(tabuleiro, Cor.Preta), new Posicao(3 , 3));
+            tabuleiro.ColocarPeca(new Torre(tabuleiro, Cor.Branca), new Posicao(7, 3));
+
+
+            Tela.ImprimirTabuleiro(tabuleiro);
         }
     }
 }
