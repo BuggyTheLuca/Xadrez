@@ -39,7 +39,7 @@ namespace tabuleiro
                 throw new TabuleiroException($"Já existe uma peça na posição {posicao}.");
             }
             pecas[posicao.linha, posicao.coluna] = peca;
-            peca.posicao = posicao;
+            peca.Posicao = posicao;
         }
 
         public Peca RetirarPeca(Posicao posicao)
@@ -49,15 +49,24 @@ namespace tabuleiro
                 return null;
             }
             Peca auxPeca = isPeca(posicao);
-            auxPeca.posicao = null;
+            auxPeca.Posicao = null;
             pecas[posicao.linha, posicao.coluna] = null;
             return auxPeca;
         }
 
-        public void ValidarPosicao(Posicao posicao)
+        public bool posicaoValida(Posicao posicao)
         {
             if (posicao.linha < 0 || posicao.coluna < 0
                 || posicao.linha >= linhas || posicao.coluna >= colunas)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public void ValidarPosicao(Posicao posicao)
+        {
+            if (!posicaoValida(posicao))
             {
                 throw new TabuleiroException($"Posição {posicao} inválida!");
             }

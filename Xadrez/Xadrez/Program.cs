@@ -23,6 +23,16 @@ namespace Xadrez
 
                     Console.Write("Origem: ");
                     Posicao origem = Tela.LerPosicaoXadrez().toPosicao();
+
+
+                    bool[,] movimentosPossiveis = partida.tabuleiro.isPeca(origem).MovimentosPossiveis();
+
+                    Console.Clear();
+                    Tela.ImprimirTabuleiro(partida.tabuleiro, movimentosPossiveis);
+
+                    Console.WriteLine("-------------------");
+                    Console.WriteLine();
+
                     Console.Write("Destino: ");
                     Posicao destino = Tela.LerPosicaoXadrez().toPosicao();
 
@@ -31,7 +41,7 @@ namespace Xadrez
             }
             catch (TabuleiroException e)
             {
-                Console.WriteLine("Error: " + e.Message);
+                Console.WriteLine("Error: " + e.Message + " track: " + e.StackTrace);
             }
         }
     }

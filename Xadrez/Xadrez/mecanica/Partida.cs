@@ -31,7 +31,7 @@ namespace mecanica
         private void ColocarPecas()
         {
             tabuleiro.ColocarPeca(new Rei(tabuleiro, Cor.Preta), new PosicaoXadrez('e', 8).toPosicao());
-            tabuleiro.ColocarPeca(new Torre(tabuleiro, Cor.Branca), new PosicaoXadrez('a', 1).toPosicao());
+            tabuleiro.ColocarPeca(new Torre(tabuleiro, Cor.Branca), new PosicaoXadrez('d', 4).toPosicao());
 
             ColocarPeoes();
         }
